@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Copa del Rey · LaLiga Española de Roblox</title>
+<style>
+:root{
+  --red:#e30613;--red2:#ff3040;--bg:#050608;--panel:#0d1015;--panel2:#11151c;
+  --line:rgba(255,255,255,.10);--muted:#89909d;--text:#f6f7f9;--green:#16d47b;
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#030405;color:var(--text);font-family:Inter,Arial,sans-serif}
+body{overflow-x:hidden}
+button{font:inherit;color:inherit}
+.app{min-height:100dvh;background:
+ radial-gradient(circle at 50% -10%,rgba(227,6,19,.22),transparent 35%),
+ radial-gradient(circle at 80% 70%,rgba(227,6,19,.07),transparent 30%),
+ #030405}
+.top{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(14px,3vw,48px);background:rgba(4,5,7,.88);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20}
+.brand{display:flex;gap:12px;align-items:center;font-weight:900;letter-spacing:.08em}.brandMark{width:34px;height:34px;border:2px solid #fff;border-radius:10px;position:relative}.brandMark:after{content:"";position:absolute;inset:7px;border:2px solid var(--red);transform:rotate(45deg)}
+.live{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:.14em;color:#fff}.dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 14px var(--red)}
+.actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:#0c0f14;padding:10px 14px;border-radius:10px;font-size:11px;font-weight:900;letter-spacing:.08em;cursor:pointer}.btn:hover{border-color:#fff2}.btn.primary{background:var(--red);border-color:var(--red)}.btn:disabled{opacity:.35;cursor:not-allowed}
+main{width:min(1500px,94vw);margin:auto;padding:34px 0 70px}
+.kicker{font-size:11px;letter-spacing:.24em;color:#aeb4bf;font-weight:900}.hero{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}.hero h1{font-size:clamp(38px,6vw,82px);line-height:.9;margin:7px 0 0;letter-spacing:-.055em}.hero p{color:var(--muted);max-width:600px;line-height:1.5}
+.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.75fr);gap:18px}
+.card{background:linear-gradient(145deg,#0e1117,#080a0e);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 80px #0008;overflow:hidden}
+.stage{position:relative;min-height:620px;display:grid;place-items:center;padding:40px;background:
+ radial-gradient(circle at center,rgba(227,6,19,.12),transparent 40%),
+ linear-gradient(135deg,#0e1117,#07080b)}
+.stage:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.025) 50%,transparent 60%);pointer-events:none}
+.wheelWrap{position:relative;width:min(560px,76vw);aspect-ratio:1}
+.wheel{width:100%;height:100%;border-radius:50%;border:10px solid #171b23;box-shadow:0 0 0 2px #ffffff12,0 0 70px #000,0 0 120px #e3061315;transition:transform 1s cubic-bezier(.12,.74,.08,1);overflow:hidden}
+.wheel img{width:100%;height:100%;object-fit:cover}
+.pointer{position:absolute;top:-18px;left:50%;transform:translateX(-50%);z-index:4;width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:34px solid #fff;filter:drop-shadow(0 5px 8px #000)}
+.center{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:108px;height:108px;border-radius:50%;background:#080a0d;border:2px solid #ffffff28;display:grid;place-items:center;z-index:3;box-shadow:0 0 35px #000}.center b{font-size:12px;letter-spacing:.12em}.spinArea{text-align:center;position:absolute;bottom:28px;left:50%;transform:translateX(-50%)}.spin{padding:15px 32px;border-radius:12px;border:0;background:#fff;color:#050608;font-weight:1000;letter-spacing:.14em;cursor:pointer}.spin:hover{transform:translateY(-1px)}
+.side{padding:20px}.sideTitle{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.sideTitle h2{margin:0;font-size:15px;letter-spacing:.1em}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}.stat{padding:13px;background:#080a0e;border:1px solid var(--line);border-radius:10px}.stat b{font-size:22px}.stat span{display:block;color:var(--muted);font-size:9px;letter-spacing:.12em;margin-top:3px}.progress{height:5px;background:#171a20;border-radius:99px;overflow:hidden;margin:10px 0 20px}.progress i{display:block;height:100%;background:var(--red);width:0;transition:.4s}.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.group{padding:11px;background:#090b0f;border:1px solid var(--line);border-radius:11px;min-height:132px}.group h3{margin:0 0 9px;font-size:12px;letter-spacing:.16em}.slot{height:25px;display:flex;align-items:center;gap:7px;color:#747b86;font-size:10px;border-top:1px solid #ffffff08}.slot img{width:17px;height:17px;object-fit:contain}.slot.filled{color:#fff;font-weight:700}
+.history{margin-top:18px;padding:18px}.history h2{font-size:13px;letter-spacing:.14em;margin:0 0 12px}.historyList{display:flex;gap:8px;overflow:auto}.historyItem{flex:0 0 auto;border:1px solid var(--line);background:#080a0d;border-radius:9px;padding:8px 11px;display:flex;align-items:center;gap:7px;font-size:10px}.historyItem img{width:19px;height:19px;object-fit:contain}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(15px);display:none;place-items:center;z-index:100}.overlay.show{display:grid}.result{text-align:center;padding:30px}.result .label{font-size:11px;letter-spacing:.3em;color:#b8bec8}.result img{width:min(210px,40vw);height:min(210px,40vw);object-fit:contain;margin:20px}.result h2{font-size:clamp(34px,7vw,78px);margin:0;letter-spacing:-.04em}.result p{color:#aaa;margin:12px 0 25px}.result strong{color:#fff}.count{font-size:clamp(80px,18vw,190px);font-weight:1000}
+.broadcast{display:none;position:fixed;inset:0;background:#020304;z-index:80;color:#fff;overflow:hidden}.broadcast.on{display:block}.tv{height:100%;width:100%;position:relative;background:radial-gradient(circle at 50% 48%,#191b22 0,#07080b 45%,#010203 100%)}.tv:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.012) 6px);pointer-events:none}.tvTop{position:absolute;left:4%;right:4%;top:4%;display:flex;justify-content:space-between;align-items:center;z-index:3}.tvLogo{font-size:clamp(14px,1.5vw,22px);font-weight:1000;letter-spacing:.12em}.tvLive{background:var(--red);padding:7px 11px;font-size:10px;font-weight:1000;letter-spacing:.16em}.tvMain{position:absolute;inset:15% 6% 17%;display:grid;place-items:center;text-align:center}.tvKicker{font-size:clamp(11px,1vw,16px);letter-spacing:.35em;color:#b9bec8}.tvTitle{font-size:clamp(48px,8vw,130px);line-height:.85;font-weight:1000;letter-spacing:-.07em;margin:16px 0}.tvSub{font-size:clamp(14px,1.6vw,23px);color:#aeb3bd}.tvCrest{width:clamp(100px,13vw,220px);height:clamp(100px,13vw,220px);object-fit:contain;margin-bottom:10px;filter:drop-shadow(0 20px 35px #000)}.tvBottom{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(90deg,#b9000b,#e30613 55%,#a9000a);height:13%;min-height:82px;display:flex;align-items:center;padding:0 5%;gap:30px;z-index:3}.tvBottom b{font-size:clamp(20px,2vw,34px);letter-spacing:.03em}.ticker{overflow:hidden;white-space:nowrap;color:#fff9;font-size:11px;letter-spacing:.08em}.countdownTV{font-size:clamp(70px,15vw,230px);font-weight:1000}.tvGroups{position:absolute;right:4%;top:15%;width:min(250px,20vw);z-index:4}.tvGroups h3{font-size:10px;letter-spacing:.2em;color:#999}.tvGroup{padding:7px 0;border-bottom:1px solid #fff2;font-size:10px}.tvExit{position:absolute;top:4%;left:4%;z-index:10;background:#fff1;border:1px solid #fff2;padding:8px 11px;border-radius:8px;font-size:10px;cursor:pointer}
+.config{display:flex;gap:10px;align-items:center;margin-top:10px;color:#8f96a1;font-size:10px}.config input{accent-color:var(--red)}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.stage{min-height:560px}.tvGroups{display:none}}
+@media(max-width:650px){.top{height:58px}.brand span{display:none}.actions .btn{padding:9px}.hero{display:block}.hero p{font-size:12px}.stage{min-height:470px;padding:20px}.wheelWrap{width:min(390px,88vw)}.spinArea{bottom:18px}.spin{padding:13px 22px}.groups{grid-template-columns:repeat(2,1fr)}main{padding-top:22px}.tvBottom{height:17%;padding:0 4%;gap:12px}.tvBottom b{font-size:16px}.ticker{font-size:8px}.tvMain{inset:18% 4% 22%}.tvTop{top:3%}.tvExit{top:3%;left:auto;right:4%}.tvTitle{font-size:clamp(42px,14vw,80px)}}
+@media(max-width:390px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{display:none}.groups{grid-template-columns:1fr}.stage{min-height:430px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="brandMark"></div><span>LALIGA ROBLOX</span></div>
+  <div class="live"><i class="dot"></i> SORTEO EN DIRECTO</div>
+  <div class="actions"><button class="btn" id="broadcastBtn">TRANSMISIÓN</button><button class="btn" id="fullBtn">PANTALLA COMPLETA</button></div>
+</header>
+
+<main>
+<section class="hero">
+  <div><div class="kicker">COPA DEL REY · TEMPORADA 1</div><h1>SORTEO OFICIAL</h1></div>
+  <p>24 clubes. 6 grupos. Una extracción por vez. El sorteo está diseñado para emisión en directo y visualización en pantalla.</p>
+</section>
+
+<div class="layout">
+  <section class="card stage">
+    <div class="wheelWrap">
+      <div class="pointer"></div>
+      <div class="wheel" id="wheel"></div>
+      <div class="center"><b>CDR<br>DRAW</b></div>
+    </div>
+    <div class="spinArea"><button class="spin" id="spinBtn">INICIAR SORTEO</button></div>
+  </section>
+
+  <aside class="card side">
+    <div class="sideTitle"><h2>CUADRO DEL SORTEO</h2><span class="kicker" id="status">PREPARADO</span></div>
+    <div class="stats">
+      <div class="stat"><b>24</b><span>CLUBES</span></div>
+      <div class="stat"><b id="drawn">0</b><span>EXTRAÍDOS</span></div>
+      <div class="stat"><b>6</b><span>GRUPOS</span></div>
+    </div>
+    <div class="progress"><i id="progress"></i></div>
+    <div class="groups" id="groups"></div>
+    <div class="config"><input type="checkbox" id="autoSound" checked><label for="autoSound">Audio cinematográfico</label></div>
+    <div class="config"><input type="number" id="delay" min="0" max="60" value="0" style="width:55px;background:#080a0d;border:1px solid #fff2;border-radius:5px;color:white;padding:4px"><label>segundos antes de transmisión</label></div>
+    <button class="btn" id="reset" style="width:100%;margin-top:14px">RESTABLECER SORTEO</button>
+  </aside>
+</div>
+
+<section class="card history"><h2>ORDEN DE EXTRACCIÓN</h2><div class="historyList" id="history"></div></section>
+</main>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="result" id="result"></div>
+</div>
+
+<div class="broadcast" id="broadcast">
+  <div class="tv">
+    <button class="tvExit" id="exitBroadcast">SALIR</button>
+    <div class="tvTop"><div class="tvLogo">LALIGA ROBLOX · COPA DEL REY</div><div class="tvLive">EN DIRECTO</div></div>
+    <div class="tvGroups" id="tvGroups"></div>
+    <div class="tvMain" id="tvMain">
+      <div>
+        <div class="tvKicker">SORTEO OFICIAL</div>
+        <div class="tvTitle">COPA DEL REY</div>
+        <div class="tvSub">La distribución de grupos está a punto de comenzar</div>
+      </div>
+    </div>
+    <div class="tvBottom"><b id="tvBottomMain">SORTEO OFICIAL</b><div class="ticker" id="ticker">24 CLUBES · 6 GRUPOS · 4 PLAZAS POR GRUPO</div></div>
+  </div>
+</div>
+
+<script>
+const TEAMS=[
+["rma","Real Madrid","RMA","1525735389783134411"],["fcb","FC Barcelona","FCB","1525734942179459264"],["atm","Atlético de Madrid","ATM","1541228944357859438"],["sev","Sevilla FC","SEV","1541229788897873961"],["val","Valencia CF","VAL","1541229851669827674"],["vil","Villarreal CF","VIL","1541229901577850910"],["ath","Athletic Club","ATH","1541231629249421453"],["rso","Real Sociedad","RSO","1541229967273365586"],["bet","Real Betis","BET","1541230021312516147"],["cel","Celta de Vigo","CEL","1541230092745973881"],["get","Getafe","GET","1541572014480035840"],["spo","Real Sporting de Gijón","SPO","1541651185185067058"],["ovi","Real Oviedo","OVI","1541648559940833401"],["ten","CD Tenerife","TEN","1541648256029696040"],["elc","Elche CF","ELC","1541649380086386740"],["rac","Racing de Santander","RAC","1541649445093900398"],["zar","Zaragoza","ZAR","1541650115041689693"],["mal","Malaga CF","MAL","1541652514645217352"],["dep","Deportivo de La Coruña","DEP","1541650173682520134"],["cad","Cádiz CF","CAD","1541650745760161865"],["lpa","UD Las Palmas","LPA","1543598640709238875"],["ray","Rayo Vallecano","RAY","1543434844778799106"],["osa","Atlético Osasuna","OSA","1546638846970568844"],["lev","Levante UD","LEV","1546638409899048970"]
+].map(x=>({id:x[0],name:x[1],short:x[2],emoji:x[3]}));
+const GROUPS=["A","B","C","D","E","F"], KEY="laliga_roblox_cdr_draw_v4";
+let state=JSON.parse(localStorage.getItem(KEY)||"null")||{remaining:TEAMS.map(t=>t.id),drawn:[],groups:Object.fromEntries(GROUPS.map(g=>[g,[]])),history:[],rotation:0};
+let spinning=false, audio=null;
+
+const team=id=>TEAMS.find(t=>t.id===id);
+const crest=t=>`https://cdn.discordapp.com/emojis/${t.emoji}?size=128&quality=lossless`;
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function currentGroup(){return GROUPS.find(g=>state.groups[g].length<4)||null}
+
+function renderWheel(){
+  const w=document.getElementById("wheel");
+  const ids=state.remaining;
+  if(!ids.length){w.innerHTML="";return}
+  const n=ids.length, stops=ids.map((id,i)=>`${i*360/n}deg ${i%2?"#151922":"#20252e"} ${(i+1)*360/n}deg`).join(",");
+  w.style.background=`conic-gradient(from ${-state.rotation}deg,${stops})`;
+  w.innerHTML=ids.map((id,i)=>{const t=team(id),a=(i+.5)*360/n;return `<img src="${crest(t)}" title="${t.name}" style="position:absolute;left:50%;top:50%;width:clamp(28px,6vw,55px);height:clamp(28px,6vw,55px);object-fit:contain;transform:rotate(${a}deg) translateY(calc(min(560px,76vw)/-2 + 48px)) rotate(${-a}deg)">`}).join("");
+}
+function renderGroups(){
+  document.getElementById("groups").innerHTML=GROUPS.map(g=>`<div class="group"><h3>GRUPO ${g}</h3>${[0,1,2,3].map(i=>{let t=team(state.groups[g][i]);return `<div class="slot ${t?"filled":""}">${t?`<img src="${crest(t)}"><span>${t.name}</span>`:"PLAZA DISPONIBLE"}</div>`}).join("")}</div>`).join("");
+  document.getElementById("tvGroups").innerHTML=GROUPS.map(g=>`<div class="tvGroup"><b>GRUPO ${g}</b> · ${state.groups[g].length}/4</div>`).join("");
+}
+function renderHistory(){
+  document.getElementById("history").innerHTML=state.history.length?state.history.map((x,i)=>{let t=team(x.team);return `<div class="historyItem"><span>${i+1}</span><img src="${crest(t)}"><span>${t.short}</span><b>G. ${x.group}</b></div>`}).join(""):"<span style='color:#69707b;font-size:11px'>Aún no hay extracciones.</span>";
+}
+function render(){
+  renderWheel();renderGroups();renderHistory();
+  document.getElementById("drawn").textContent=state.drawn.length;
+  document.getElementById("progress").style.width=(state.drawn.length/24*100)+"%";
+  document.getElementById("spinBtn").disabled=spinning||!state.remaining.length;
+  document.getElementById("status").textContent=state.remaining.length?"PREPARADO":"COMPLETO";
+}
+function ensureAudio(){
+  if(audio)return;
+  const C=window.AudioContext||window.webkitAudioContext;if(!C)return;
+  const ctx=new C();audio={ctx,master:ctx.createGain(),bg:null};
+  audio.master.gain.value=.055;audio.master.connect(ctx.destination);
+  if(ctx.state==="suspended")ctx.resume();
+}
+function tone(freq,dur,type="sine",gain=.12,delay=0){
+  if(!audio)return;const c=audio.ctx,o=c.createOscillator(),g=c.createGain(),now=c.currentTime+delay;
+  o.type=type;o.frequency.setValueAtTime(freq,now);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(gain,now+.03);g.gain.exponentialRampToValueAtTime(.0001,now+dur);o.connect(g);g.connect(audio.master);o.start(now);o.stop(now+dur+.04);
+}
+function suspense(){
+  if(!audio)return;
+  [110,146.8,185,220,293.7].forEach((f,i)=>tone(f,1.4,"sine",.07,i*.18));
+  tone(440,1.8,"triangle",.055,.75);
+}
+function revealSound(){
+  if(!audio)return;
+  tone(196,.5,"sawtooth",.08);tone(293.7,.55,"triangle",.09,.08);tone(392,.8,"triangle",.11,.16);tone(587.3,1.1,"sine",.08,.28);
+}
+function background(){
+  if(!audio||audio.bg)return;
+  const ctx=audio.ctx,g=ctx.createGain();g.gain.value=.018;g.connect(audio.master);
+  const o=ctx.createOscillator();o.type="sine";o.frequency.value=55;o.connect(g);o.start();audio.bg=o;
+}
+async function countdown(){
+  if(!document.getElementById("autoSound").checked)return;
+  ensureAudio();background();
+  for(let n=3;n>0;n--){tone(120+n*25,.35,"sine",.12);await new Promise(r=>setTimeout(r,650))}
+}
+async function startSpin(){
+  if(spinning||!state.remaining.length)return;
+  spinning=true;document.getElementById("status").textContent="PREPARANDO";
+  ensureAudio();background();
+  const wait=Math.max(0,Number(document.getElementById("delay").value)||0);
+  if(wait){toggleBroadcast(true);await new Promise(r=>setTimeout(r,wait*1000))}
+  await countdown(); if(document.getElementById("autoSound").checked)suspense();
+  const idx=Math.floor(Math.random()*state.remaining.length), chosen=team(state.remaining[idx]),g=currentGroup();
+  const n=state.remaining.length, target=360-(idx+.5)*360/n;
+  state.rotation+=1440+((target-state.rotation%360+360)%360);
+  document.getElementById("wheel").style.transform=`rotate(${state.rotation}deg)`;
+  document.getElementById("tvMain").innerHTML=`<div><div class="tvKicker">EXTRACCIÓN EN CURSO</div><div class="countdownTV">?</div><div class="tvSub">El siguiente club será revelado...</div></div>`;
+  await new Promise(r=>setTimeout(r,4300));finish(chosen,g);
+}
+function finish(t,g){
+  state.remaining=state.remaining.filter(id=>id!==t.id);state.drawn.push(t.id);state.groups[g].push(t.id);state.history.push({team:t.id,group:g});save();render();spinning=false;
+  if(document.getElementById("autoSound").checked)revealSound();
+  showResult(t,g);
+  document.getElementById("tvMain").innerHTML=`<div><img class="tvCrest" src="${crest(t)}"><div class="tvKicker">CLUB EXTRAÍDO · GRUPO ${g}</div><div class="tvTitle">${t.name}</div><div class="tvSub">${t.short} · Plaza confirmada</div></div>`;
+  document.getElementById("tvBottomMain").textContent=`GRUPO ${g} · ${t.name.toUpperCase()}`;
+  document.getElementById("ticker").textContent=`${state.drawn.length}/24 EXTRAÍDOS · ${24-state.drawn.length} CLUBES RESTANTES`;
+}
+function showResult(t,g){
+  document.getElementById("result").innerHTML=`<div class="label">CLUB EXTRAÍDO</div><img src="${crest(t)}"><div class="label">ASIGNADO AL</div><h2>GRUPO ${g}</h2><p><strong>${t.name}</strong> ha sido colocado oficialmente.</p><button class="btn primary" onclick="closeResult()">CONTINUAR</button>`;
+  document.getElementById("overlay").classList.add("show");
+}
+function closeResult(){document.getElementById("overlay").classList.remove("show")}
+function toggleBroadcast(force){
+  const b=document.getElementById("broadcast"),on=force===true?!b.classList.contains("on"):!b.classList.contains("on");
+  b.classList.toggle("on",on);document.getElementById("broadcastBtn").classList.toggle("primary",on);
+  if(on){ensureAudio();background();document.getElementById("tvMain").innerHTML=state.drawn.length?`<div><div class="tvKicker">SORTEO EN DIRECTO</div><div class="tvTitle">${state.drawn.length}/24</div><div class="tvSub">Clubes extraídos</div></div>`:`<div><div class="tvKicker">SORTEO OFICIAL</div><div class="tvTitle">COPA DEL REY</div><div class="tvSub">La distribución de grupos está a punto de comenzar</div></div>`}
+}
+document.getElementById("spinBtn").onclick=startSpin;
+document.getElementById("broadcastBtn").onclick=()=>toggleBroadcast();
+document.getElementById("exitBroadcast").onclick=()=>toggleBroadcast(false);
+document.getElementById("fullBtn").onclick=()=>document.documentElement.requestFullscreen?.();
+document.getElementById("reset").onclick=()=>{if(confirm("¿Restablecer completamente el sorteo?")){localStorage.removeItem(KEY);location.reload()}};
+document.addEventListener("keydown",e=>{if(e.code==="Space"&&!["INPUT","BUTTON"].includes(document.activeElement.tagName)){e.preventDefault();startSpin()}if(e.key.toLowerCase()==="b")toggleBroadcast();if(e.key==="Escape"){closeResult();document.getElementById("broadcast").classList.remove("on")}});
+render();
+</script>
+</body>
+</html>
